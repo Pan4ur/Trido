@@ -2,6 +2,9 @@
 #include <fstream>
 #include <ctime>
 #include <string>
+#include <filesystem>
+
+namespace fs = std::filesystem;
 
 enum Log_type { INFO, WARNING, ERROR };
 class Logger

@@ -102,13 +102,15 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Libs\Lua\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\libs\Lua\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <SDLCheck>true</SDLCheck>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Libs\Lua;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\libs\Lua;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>liblua54.a;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -132,17 +134,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="collision.cpp" />
-    <ClCompile Include="io.cpp" />
-    <ClCompile Include="logger.cpp" />
-    <ClCompile Include="lua.cpp" />
+    <ClCompile Include="Core.cpp" />
+    <ClCompile Include="EventManager.cpp" />
+    <ClCompile Include="IO.cpp" />
+    <ClCompile Include="Logger.cpp" />
+    <ClCompile Include="CmdManager.cpp" />
+    <ClCompile Include="StateManager.cpp" />
     <ClCompile Include="Trido.cpp" />
+    <ClCompile Include="UI.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="collision.h" />
-    <ClInclude Include="io.h" />
-    <ClInclude Include="logger.h" />
-    <ClInclude Include="lua.h" />
+    <ClInclude Include="Core.h" />
+    <ClInclude Include="EventManager.h" />
+    <ClInclude Include="IO.h" />
+    <ClInclude Include="Logger.h" />
+    <ClInclude Include="CmdManager.h" />
+    <ClInclude Include="StateManager.h" />
+    <ClInclude Include="UI.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

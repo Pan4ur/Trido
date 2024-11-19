@@ -21,30 +21,48 @@
     <ClCompile Include="Trido.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="logger.cpp">
+    <ClCompile Include="Logger.cpp">
       <Filter>Broder</Filter>
     </ClCompile>
-    <ClCompile Include="collision.cpp">
+    <ClCompile Include="IO.cpp">
       <Filter>Broder</Filter>
     </ClCompile>
-    <ClCompile Include="io.cpp">
+    <ClCompile Include="CmdManager.cpp">
       <Filter>Broder</Filter>
     </ClCompile>
-    <ClCompile Include="lua.cpp">
+    <ClCompile Include="Core.cpp">
+      <Filter>Broder</Filter>
+    </ClCompile>
+    <ClCompile Include="UI.cpp">
+      <Filter>Broder</Filter>
+    </ClCompile>
+    <ClCompile Include="StateManager.cpp">
+      <Filter>Broder</Filter>
+    </ClCompile>
+    <ClCompile Include="EventManager.cpp">
       <Filter>Broder</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="io.h">
+    <ClInclude Include="IO.h">
       <Filter>Broder</Filter>
     </ClInclude>
-    <ClInclude Include="logger.h">
+    <ClInclude Include="Logger.h">
       <Filter>Broder</Filter>
     </ClInclude>
-    <ClInclude Include="lua.h">
+    <ClInclude Include="CmdManager.h">
       <Filter>Broder</Filter>
     </ClInclude>
-    <ClInclude Include="collision.h">
+    <ClInclude Include="Core.h">
+      <Filter>Broder</Filter>
+    </ClInclude>
+    <ClInclude Include="UI.h">
+      <Filter>Broder</Filter>
+    </ClInclude>
+    <ClInclude Include="StateManager.h">
+      <Filter>Broder</Filter>
+    </ClInclude>
+    <ClInclude Include="EventManager.h">
       <Filter>Broder</Filter>
     </ClInclude>
   </ItemGroup>

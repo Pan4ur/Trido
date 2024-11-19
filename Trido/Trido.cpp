@@ -1,10 +1,8 @@
-#include "io.h"
-#include "logger.h"
-#include "lua.h"
+#include "Core.h"
 
 int main(int argc, char** argv)
 {
-	Logger logger;
-	logger.print(Log_type::INFO, "Program successfully started");
+	Core::Core core;
+
 	return 0;
 }

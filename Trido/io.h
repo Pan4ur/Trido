@@ -2,10 +2,7 @@
 #include <iostream>
 #include <fstream>
 
-class Input
+namespace IO
 {
-public:
-	Input();
-private:
 
-};
+}
