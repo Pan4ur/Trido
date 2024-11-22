@@ -6,7 +6,7 @@
 
 namespace fs = std::filesystem;
 
-enum Log_type { INFO, WARNING, ERROR };
+enum Log_type { INFO, WARNING, LOG_ERROR };
 class Logger
 {
 public:

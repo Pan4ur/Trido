@@ -27,7 +27,7 @@ void Logger::print(int log_type, std::string text)
 		log_file << "INFO";
 	else if (log_type == WARNING)
 		log_file << "WARNING";
-	else if (log_type == ERROR)
+	else if (log_type == LOG_ERROR)
 		log_file << "ERROR";
 	log_file << "] " << text << std::endl;
 }
