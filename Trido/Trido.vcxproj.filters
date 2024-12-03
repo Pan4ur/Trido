@@ -66,4 +66,8 @@
       <Filter>Broder</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="vert1.glsl" />
+    <None Include="frag1.glsl" />
+  </ItemGroup>
 </Project>

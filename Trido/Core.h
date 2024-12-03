@@ -1,15 +1,17 @@
 #pragma once
 
+#include "UI.h"
 #include <string>
-#include <GLFW/glfw3.h>
 #include <GL/freeglut.h>
+#include <rapidxml.hpp>
+#include <lua.hpp>
+#include <functional>
+#include <vector>
 
-// internal headers
 #include "IO.h"
 #include "StateManager.h"
 #include "EventManager.h"
 #include "CmdManager.h"
-#include "UI.h"
 #include "Logger.h"
 
 using namespace IO;
@@ -20,6 +22,9 @@ using namespace UI;
 
 namespace Core
 {
+	unsigned int createShaderProgram(const char* vertexShaderSource, const char* fragmentShaderSource);
+	unsigned int compileShader(unsigned int type, const char* source);
+
 	class Settings
 	{
 	public:
@@ -27,9 +32,19 @@ namespace Core
 		float monitory_scaleY = 0;
 		const GLFWvidmode* video_mode;
 	};
-	class Resources
+	struct Resources
 	{
-
+		Resources();
+		struct Texture
+		{
+			int width;
+			int height;
+			int channels;
+			GLuint tex_id = 0;
+		};
+		void Load();
+		bool LoadTextureFromFile(const char* filename, Texture* texture);
+		std::vector<Texture>textures;
 	};
 	class System
 	{
@@ -44,13 +59,21 @@ namespace Core
 		Core();
 		void Loop();
 		void Pipeline();
+		void Render();
+		void Exit();
 		std::string getVersion() { return version; }
+		void Input(GLFWwindow* window);
 
 		Logger logger;
-		GLFWwindow* window = nullptr;
+		GLFWwindow* gl_window = nullptr;
 		Settings settings;
-		Resources resources;
+		Resources res;
 		System sysdata;
+		std::vector<Window> windows;
+
+		static void RenderMainWindow();
+		static void InputMainWindow(GLFWwindow* window);
+		static void EventMainWindow();
 		
 	private:
 		std::string version = "0.0.1pa";
