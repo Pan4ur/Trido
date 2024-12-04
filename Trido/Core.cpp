@@ -91,13 +91,19 @@ namespace Core
 
 		stbi_set_flip_vertically_on_load(true);
 		res.Load();
-		Window(this, this->RenderMainWindow, this->InputMainWindow, *this->EventMainWindow);
-		windows.push_back(Window(this, RenderMainWindow, InputMainWindow, EventMainWindow));
+		windows.push_back(Window([&]() {this->RenderMainWindow(); }, [&](GLFWwindow* window) {
+			this->InputMainWindow(window); }, [&]() { this->EventMainWindow(); }));
 	}
 
 	void Core::RenderMainWindow()
 	{
+		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+		glClear(GL_COLOR_BUFFER_BIT);
 
+		glUseProgram(shaderProgram);
+		glBindTexture(GL_TEXTURE_2D, res.textures[0].tex_id);
+		glBindVertexArray(VAO);
+		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 	}
 	void Core::InputMainWindow(GLFWwindow* window)
 	{
@@ -110,10 +116,10 @@ namespace Core
 	}
 	void Core::Input(GLFWwindow* window)
 	{
-		// topper window is at the end
+		// first input topper window
 		for (auto window = windows.rbegin(); window != windows.rend(); window++)
 		{
-			window->Input(gl_window);
+			window->InputCallback(gl_window);
 			if (window->LockInput == true)
 				// stop receive input from lower windows
 				break;
@@ -134,13 +140,9 @@ namespace Core
 	}
 	void Core::Render()
 	{
-		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
-		glClear(GL_COLOR_BUFFER_BIT);
-
-		glUseProgram(shaderProgram);
-		glBindTexture(GL_TEXTURE_2D, res.textures[0].tex_id);
-		glBindVertexArray(VAO);
-		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+		// first render lower window
+		for (Window& window : windows)
+			window.RenderCallback();
 	}
 	void Core::Exit()
 	{

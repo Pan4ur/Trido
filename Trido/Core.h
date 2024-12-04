@@ -71,9 +71,9 @@ namespace Core
 		System sysdata;
 		std::vector<Window> windows;
 
-		static void RenderMainWindow();
-		static void InputMainWindow(GLFWwindow* window);
-		static void EventMainWindow();
+		void RenderMainWindow();
+		void InputMainWindow(GLFWwindow* window);
+		void EventMainWindow();
 		
 	private:
 		std::string version = "0.0.1pa";

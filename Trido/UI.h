@@ -13,11 +13,10 @@ namespace UI
 		using Render = std::function<void()>;
 		using Input = std::function<void(GLFWwindow*)>;
 		using Event = std::function<void()>;
-		template <class O, class M>
-		Window(O* object, M* render, M* input, M* event);
-		void (*Render)() = nullptr;
-		void (*Input)(GLFWwindow* window) = nullptr; 
-		void (*Event)() = nullptr;
+		Window(Render renderFunc, Input inputFunc, Event eventFunc);
+		Render RenderCallback;
+		Input InputCallback;
+		Event EventCallback;
 		// permit to receive input from lower windows
 		bool LockInput = false;
 	};
