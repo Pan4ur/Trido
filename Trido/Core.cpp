@@ -37,7 +37,9 @@ namespace Core
 		glewInit();
 		glfwSwapInterval(1);
 
-		logger.print(Log_type::INFO, "Core run");
+		glfwSetWindowUserPointer(gl_window, this);
+		glfwSetKeyCallback(gl_window, Core::KeyCallback);
+		glfwSetMouseButtonCallback(gl_window, Core::MouseCallback);
 
 		glGenVertexArrays(1, &VAO);
 		glGenBuffers(1, &VBO);
@@ -93,6 +95,7 @@ namespace Core
 		res.Load();
 		windows.push_back(Window([&]() {this->RenderMainWindow(); }, [&](GLFWwindow* window) {
 			this->InputMainWindow(window); }, [&]() { this->EventMainWindow(); }));
+		logger.print(Log_type::INFO, "Core run");
 	}
 
 	void Core::RenderMainWindow()
@@ -114,15 +117,36 @@ namespace Core
 	{
 
 	}
-	void Core::Input(GLFWwindow* window)
+	void Core::KeyCallback(GLFWwindow* gl_window, int key, int scancode, int action, int mod)
 	{
-		// first input topper window
-		for (auto window = windows.rbegin(); window != windows.rend(); window++)
-		{
-			window->InputCallback(gl_window);
-			if (window->LockInput == true)
-				// stop receive input from lower windows
-				break;
+		Core* core = static_cast<Core*>(glfwGetWindowUserPointer(gl_window));
+		if (core) {
+			// first input topper window
+			std::vector<Window>&windows = core->windows;
+			for (auto window = windows.rbegin(); window != windows.rend(); window++)
+			{
+				window->InputCallback(gl_window);
+				if (window->LockInput == Window::ALLOW_ALL)
+					continue;
+				// stop accept input from lower windows
+				else break;
+			}
+		}
+	}
+	void Core::MouseCallback(GLFWwindow* gl_window, int button, int action, int mod)
+	{
+		Core* core = static_cast<Core*>(glfwGetWindowUserPointer(gl_window));
+		if (core) {
+			// first input topper window
+			std::vector<Window>& windows = core->windows;
+			for (auto window = windows.rbegin(); window != windows.rend(); window++)
+			{
+				window->InputCallback(gl_window);
+				if (window->LockInput == Window::ALLOW_ALL || window->LockInput == Window::ALLOW_MOUSE)
+					continue;
+				// stop accept input from lower windows
+				else break;
+			}
 		}
 	}
 	void Core::Loop()
@@ -133,7 +157,6 @@ namespace Core
 	}
 	void Core::Pipeline()
 	{
-		Input(gl_window);
 		Render();
 		glfwSwapBuffers(gl_window);
 		glfwPollEvents();

@@ -18,6 +18,6 @@ namespace UI
 		Input InputCallback;
 		Event EventCallback;
 		// permit to receive input from lower windows
-		bool LockInput = false;
+		enum InputRule { ALLOW_ALL, ALLOW_MOUSE, FORBID_ALL }LockInput = FORBID_ALL;
 	};
 }

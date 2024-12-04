@@ -62,7 +62,6 @@ namespace Core
 		void Render();
 		void Exit();
 		std::string getVersion() { return version; }
-		void Input(GLFWwindow* window);
 
 		Logger logger;
 		GLFWwindow* gl_window = nullptr;
@@ -70,6 +69,8 @@ namespace Core
 		Resources res;
 		System sysdata;
 		std::vector<Window> windows;
+		static void KeyCallback(GLFWwindow* window, int key, int scancode, int action, int mod);
+		static void MouseCallback(GLFWwindow* window, int button, int action, int mod);
 
 		void RenderMainWindow();
 		void InputMainWindow(GLFWwindow* window);
