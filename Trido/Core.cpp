@@ -131,6 +131,7 @@ namespace Core
 				// stop accept input from lower windows
 				else break;
 			}
+
 		}
 	}
 	void Core::MouseCallback(GLFWwindow* gl_window, int button, int action, int mod)
