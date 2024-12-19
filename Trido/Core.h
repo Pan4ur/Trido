@@ -12,7 +12,6 @@
 #include "StateManager.h"
 #include "EventManager.h"
 #include "CmdManager.h"
-#include "Logger.h"
 
 using namespace IO;
 using namespace StateManager;
@@ -22,8 +21,6 @@ using namespace UI;
 
 namespace Core
 {
-	unsigned int createShaderProgram(const char* vertexShaderSource, const char* fragmentShaderSource);
-	unsigned int compileShader(unsigned int type, const char* source);
 
 	class Settings
 	{
@@ -31,20 +28,6 @@ namespace Core
 		float monitory_scaleX = 0;
 		float monitory_scaleY = 0;
 		const GLFWvidmode* video_mode;
-	};
-	struct Resources
-	{
-		Resources();
-		struct Texture
-		{
-			int width;
-			int height;
-			int channels;
-			GLuint tex_id = 0;
-		};
-		void Load();
-		bool LoadTextureFromFile(const char* filename, Texture* texture);
-		std::vector<Texture>textures;
 	};
 	class System
 	{
@@ -68,13 +51,10 @@ namespace Core
 		Settings settings;
 		Resources res;
 		System sysdata;
-		std::vector<Window> windows;
+		std::vector<std::shared_ptr<Window>> windows;
 		static void KeyCallback(GLFWwindow* window, int key, int scancode, int action, int mod);
 		static void MouseCallback(GLFWwindow* window, int button, int action, int mod);
-
-		void RenderMainWindow();
-		void InputMainWindow(GLFWwindow* window);
-		void EventMainWindow();
+		static void CursorPosCallback(GLFWwindow* window, double xpos, double ypos);
 		
 	private:
 		std::string version = "0.0.1pa";

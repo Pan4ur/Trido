@@ -140,6 +140,7 @@
     <ClCompile Include="IO.cpp" />
     <ClCompile Include="Logger.cpp" />
     <ClCompile Include="CmdManager.cpp" />
+    <ClCompile Include="Resources.cpp" />
     <ClCompile Include="StateManager.cpp" />
     <ClCompile Include="Trido.cpp" />
     <ClCompile Include="UI.cpp" />
@@ -150,6 +151,7 @@
     <ClInclude Include="IO.h" />
     <ClInclude Include="Logger.h" />
     <ClInclude Include="CmdManager.h" />
+    <ClInclude Include="Resources.h" />
     <ClInclude Include="StateManager.h" />
     <ClInclude Include="UI.h" />
   </ItemGroup>
